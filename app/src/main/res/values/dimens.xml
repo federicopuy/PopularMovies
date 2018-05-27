@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="poster_width">209dp</dimen>
+    <dimen name="poster_height">296dp</dimen>
+    <dimen name="margin_std">8dp</dimen>
+    <dimen name="margin_top_release_date">52dp</dimen>
+    <dimen name="margin_top_users_vote">80dp</dimen>
+    <dimen name="margin_plot_synopsis">24dp</dimen>
+    <dimen name="text_size_titles">16sp</dimen>
+    <dimen name="text_size_info">24sp</dimen>
+</resources>

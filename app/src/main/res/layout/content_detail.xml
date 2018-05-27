@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.DetailActivity"
+    tools:showIn="@layout/activity_detail">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/content_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imagePoster"
+            android:layout_width="@dimen/poster_width"
+            android:layout_height="@dimen/poster_height"
+            android:layout_margin="@dimen/margin_std"
+            android:contentDescription="@string/poster_Image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/releaseDateTitle"
+            style="@style/textViewsTitles"
+            android:layout_marginEnd="@dimen/margin_std"
+            android:layout_marginStart="@dimen/margin_std"
+            android:layout_marginTop="@dimen/margin_top_release_date"
+            android:text="@string/release_date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imagePoster"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            style="@style/textViewsInfo"
+            android:layout_margin="@dimen/margin_std"
+            android:text="@string/example_date"
+            app:layout_constraintEnd_toEndOf="@+id/releaseDateTitle"
+            app:layout_constraintStart_toStartOf="@+id/releaseDateTitle"
+            app:layout_constraintTop_toBottomOf="@+id/releaseDateTitle" />
+
+        <TextView
+            android:id="@+id/usersVoteTitle"
+            style="@style/textViewsTitles"
+            android:layout_marginEnd="@dimen/margin_std"
+            android:layout_marginStart="@dimen/margin_std"
+            android:layout_marginTop="@dimen/margin_top_users_vote"
+            android:text="@string/user_s_vote"
+            app:layout_constraintEnd_toEndOf="@+id/releaseDateTitle"
+            app:layout_constraintStart_toStartOf="@+id/releaseDateTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvReleaseDate" />
+
+        <TextView
+            android:id="@+id/tvVoteAverage"
+            style="@style/textViewsInfo"
+            android:layout_margin="@dimen/margin_std"
+            app:layout_constraintEnd_toEndOf="@+id/usersVoteTitle"
+            app:layout_constraintStart_toStartOf="@+id/usersVoteTitle"
+            app:layout_constraintTop_toBottomOf="@+id/usersVoteTitle"
+            tools:text="3.5" />
+
+        <TextView
+            android:id="@+id/tvPlotSynopsis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_plot_synopsis"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imagePoster"
+            tools:text="@string/lorem_ipsum" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.v4.widget.NestedScrollView>

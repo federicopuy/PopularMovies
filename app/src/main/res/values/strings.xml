@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">PopularMovies</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="movie_poster_cont_description">Movie Poster</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="sort_by">Sort by</string>
+    <string name="error">Error</string>
+    <string name="release_date">Release Date</string>
+    <string name="user_s_vote">User\'s Vote</string>
+    <string name="poster_Image">posterImage</string>
+    <string name="example_date">2015–08-13</string>
+</resources>
