@@ -56,13 +56,15 @@ public class CustomAdapter extends BaseAdapter {
 
         String imagePath = moviesList.get(i).getPosterPath();
 
-        Picasso.get().load(Utils.getImageUrl(imagePath)).into(listViewHolder.imageView);
+        Picasso.get()
+                .load(Utils.getImageUrl(imagePath))
+                .error(R.drawable.ic_baseline_error_24px)
+                .into(listViewHolder.imageView);
 
         listViewHolder.imageView.setAdjustViewBounds(true);
 
         return view;
     }
-
 
     static class ViewHolder {
         ImageView imageView;

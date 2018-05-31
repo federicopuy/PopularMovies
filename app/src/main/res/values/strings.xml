@@ -9,4 +9,5 @@
     <string name="user_s_vote">User\'s Vote</string>
     <string name="poster_Image">posterImage</string>
     <string name="example_date">2015–08-13</string>
+    <string name="check_internet">Check Internet Connection</string>
 </resources>

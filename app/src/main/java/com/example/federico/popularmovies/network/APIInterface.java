@@ -10,9 +10,9 @@ import retrofit2.http.Query;
 public interface APIInterface {
 
 
-    @GET(NetworkUtils.AUTH + "{method}/" + "{object}")
-    Call<Movies> getMovies(@Path("method") String method,
-                           @Path("object") String object,
-                           @Query("api_key") String apiKey, @Query("sort_by") String sortBy);
+    @GET(NetworkUtils.AUTH + "{object}/" + "{sortBy}")
+    Call<Movies> getMovies(@Path("object") String object,
+                           @Path("sortBy") String sortBy,
+                           @Query("api_key") String apiKey);
 
 }

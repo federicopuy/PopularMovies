@@ -2,6 +2,8 @@ package com.example.federico.popularmovies.activities;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.federico.popularmovies.BuildConfig;
 import com.example.federico.popularmovies.R;
 import com.example.federico.popularmovies.adapters.CustomAdapter;
 import com.example.federico.popularmovies.model.Movies;
@@ -25,7 +28,10 @@ import com.example.federico.popularmovies.network.NetworkUtils;
 import com.example.federico.popularmovies.network.RetrofitClient;
 import com.example.federico.popularmovies.utils.Utils;
 import com.google.gson.Gson;
+
+import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -60,14 +66,15 @@ public class MainActivity extends AppCompatActivity {
 
         APIInterface mService = RetrofitClient.getClient(getApplicationContext()).create(APIInterface.class);
 
-        Call<Movies> callGetMovies = mService.getMovies(NetworkUtils.METHOD,
-                NetworkUtils.OBJECT, NetworkUtils.APIKEY, Utils.getSortParameterURL((String) sortByMethod));
+        Call<Movies> callGetMovies = mService.getMovies(NetworkUtils.OBJECT, Utils.getSortParameterURL((String) sortByMethod), BuildConfig.MY_MOVIE_DB_API_KEY);
 
         callGetMovies.enqueue(new Callback<Movies>() {
             @Override
             public void onResponse(Call<Movies> call, Response<Movies> response) {
 
                 progressBar.setVisibility(View.INVISIBLE);
+
+                Log.d(TAG, call.request().toString());
 
                 if (response.isSuccessful()) {
 
@@ -86,6 +93,11 @@ public class MainActivity extends AppCompatActivity {
 
                 } else {
 
+                    try {
+                        Log.i(TAG, Objects.requireNonNull(response.errorBody()).string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(MainActivity.this, R.string.error, Toast.LENGTH_LONG).show();
 
                 }
@@ -158,8 +170,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                requestToGetMovies(itemsSpinnerSort.get(i));
 
+                if (!isNetworkConnected()){
+
+                    Toast.makeText(MainActivity.this, R.string.check_internet, Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    requestToGetMovies(itemsSpinnerSort.get(i));
+                }
             }
 
             @Override
@@ -170,4 +189,15 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = Objects.requireNonNull(cm).getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
+    }
+
+
+
 }

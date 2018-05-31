@@ -64,6 +64,7 @@ public class DetailActivity extends AppCompatActivity {
             Picasso.get().load(imageURL)
                     .centerCrop()
                     .resize(width / 3, width / 2)
+                    .error(R.drawable.ic_baseline_error_24px)
                     .into(imagePoster);
 
             getSupportActionBar().setTitle(result.getTitle());
