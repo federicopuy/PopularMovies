@@ -14,6 +14,7 @@ public class Utils {
 
         sortOptions.add(Constants.SORT_BY_POPULARITY);
         sortOptions.add(Constants.SORT_BY_RATING);
+        sortOptions.add(Constants.SORT_BY_FAVORITES);
 
         return sortOptions;
 

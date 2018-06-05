@@ -7,5 +7,16 @@
     <dimen name="margin_top_users_vote">80dp</dimen>
     <dimen name="margin_plot_synopsis">24dp</dimen>
     <dimen name="text_size_titles">16sp</dimen>
+    <dimen name="text_size_titles_info">20sp</dimen>
     <dimen name="text_size_info">24sp</dimen>
+    <dimen name="margin_start_trailer_number">40dp</dimen>
+    <dimen name="width_image_play">44dp</dimen>
+    <dimen name="height_image_play">32dp</dimen>
+    <dimen name="margin_start_image_play">28dp</dimen>
+    <dimen name="height_each_video">80dp</dimen>
+    <dimen name="line_height">1dp</dimen>
+    <dimen name="line_width">0dp</dimen>
+    <dimen name="line_margin_top">12dp</dimen>
+
+
 </resources>

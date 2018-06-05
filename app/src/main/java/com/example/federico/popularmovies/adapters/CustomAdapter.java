@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.example.federico.popularmovies.R;
-import com.example.federico.popularmovies.model.Result;
+import com.example.federico.popularmovies.model.MovieEntry;
 import com.example.federico.popularmovies.utils.Utils;
 import com.squareup.picasso.Picasso;
 
@@ -18,9 +18,9 @@ import java.util.List;
 public class CustomAdapter extends BaseAdapter {
 
     private final LayoutInflater layoutInflater;
-    private final List<Result> moviesList;
+    private final List<MovieEntry> moviesList;
 
-    public CustomAdapter(Context context, List<Result> moviesList) {
+    public CustomAdapter(Context context, List<MovieEntry> moviesList) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.moviesList = moviesList;
     }

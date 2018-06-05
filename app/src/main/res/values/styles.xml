@@ -22,7 +22,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_titles</item>
         <item name="android:textColor">@color/colorBlack</item>
-
     </style>
 
     <style name="textViewsInfo">
@@ -30,7 +29,23 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_info</item>
         <item name="android:textColor">@color/colorAccent</item>
+    </style>
 
+    <style name="textViewsMovieInfoTitles">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_size_titles_info</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <item name="android:layout_margin">@dimen/margin_std</item>
+    </style>
+
+    <style name="lineBars">
+        <item name="android:layout_width">@dimen/line_width</item>
+        <item name="android:layout_height">@dimen/line_height</item>
+        <item name="android:background">@color/colorBlack</item>
+        <item name="android:layout_marginTop">@dimen/line_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/margin_std</item>
+        <item name="android:layout_marginEnd">@dimen/margin_std</item>
     </style>
 
 </resources>
