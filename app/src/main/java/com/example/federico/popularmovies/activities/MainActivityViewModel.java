@@ -10,7 +10,7 @@ import com.example.federico.popularmovies.model.MovieEntry;
 
 import java.util.List;
 
-class MainActivityViewModel extends AndroidViewModel {
+public class MainActivityViewModel extends AndroidViewModel {
 
     private static final String TAG = MainActivityViewModel.class.getSimpleName();
 

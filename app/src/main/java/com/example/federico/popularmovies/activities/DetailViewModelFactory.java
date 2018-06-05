@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProvider;
 
 import com.example.federico.popularmovies.database.AppDatabase;
 
-class DetailViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+public class DetailViewModelFactory extends ViewModelProvider.NewInstanceFactory {
 
     private final AppDatabase mDb;
     private final int mMovieId;

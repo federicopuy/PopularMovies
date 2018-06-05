@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel;
 import com.example.federico.popularmovies.database.AppDatabase;
 import com.example.federico.popularmovies.model.MovieEntry;
 
-class DetailViewModel extends ViewModel {
+public class DetailViewModel extends ViewModel {
 
     private LiveData<MovieEntry> movieEntry;
 
