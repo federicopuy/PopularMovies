@@ -21,7 +21,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Trailer 1" />
+            tools:text="Trailer 1"
+            android:layout_marginLeft="@dimen/margin_start_trailer_number" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -34,7 +35,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_play_arrow_24px"
-            android:contentDescription="@string/play_image" />
+            android:contentDescription="@string/play_image"
+            android:layout_marginLeft="@dimen/margin_start_image_play" />
     </android.support.constraint.ConstraintLayout>
 
     </FrameLayout>

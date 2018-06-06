@@ -35,10 +35,8 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         String text = mContext.getString(R.string.trailer) + position;
         holder.tvTrailerNumber.setText(text);
-
     }
 
     @Override
@@ -52,19 +50,14 @@ public class VideosAdapter extends RecyclerView.Adapter<VideosAdapter.ViewHolder
 
         private ViewHolder(View itemView) {
         super(itemView);
-
         tvTrailerNumber = itemView.findViewById(R.id.tvTrailerNumber);
-
         itemView.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
         int clickedPosition = getAdapterPosition();
-
         Video clickedVideo = videoList.get(clickedPosition);
-
         mOnClickListener.onListItemClick(clickedPosition, clickedVideo);
 
     }

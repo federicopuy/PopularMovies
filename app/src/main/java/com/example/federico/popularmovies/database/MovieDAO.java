@@ -23,7 +23,6 @@ public interface MovieDAO {
     @Delete
     void deleteMovie(MovieEntry moviesEntry);
 
-
     @Query("SELECT * FROM movie WHERE idMovieDb = :id")
     LiveData<MovieEntry> loadMovieById(int id);
 

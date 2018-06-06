@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="lineBars">
+        <item name="android:layout_width">@dimen/line_width</item>
+        <item name="android:layout_height">@dimen/line_height</item>
+        <item name="android:background">@color/colorBlack</item>
+        <item name="android:layout_marginTop">@dimen/line_margin_top</item>
+        <item name="android:layout_marginStart">@dimen/margin_std</item>
+        <item name="android:layout_marginEnd">@dimen/margin_std</item>
+    </style>
+</resources>

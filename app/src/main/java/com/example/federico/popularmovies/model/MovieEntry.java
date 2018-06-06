@@ -100,7 +100,6 @@ public class MovieEntry {
         return releaseDate;
     }
 
-
     public int getIdRoom() {
         return idRoom;
     }

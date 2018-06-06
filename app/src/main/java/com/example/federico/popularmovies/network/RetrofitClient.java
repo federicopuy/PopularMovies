@@ -11,13 +11,11 @@ public class RetrofitClient {
     public static Retrofit getClient(Context mContext) {
 
         if (retrofit==null){
-
             retrofit = new Retrofit.Builder()
                     .baseUrl(NetworkUtils.HOST)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
-
         return retrofit;
     }
 }

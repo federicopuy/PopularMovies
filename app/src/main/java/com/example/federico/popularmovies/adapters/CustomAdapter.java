@@ -18,7 +18,7 @@ import java.util.List;
 public class CustomAdapter extends BaseAdapter {
 
     private final LayoutInflater layoutInflater;
-    private final List<MovieEntry> moviesList;
+    private List<MovieEntry> moviesList;
 
     public CustomAdapter(Context context, List<MovieEntry> moviesList) {
         layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -41,6 +41,11 @@ public class CustomAdapter extends BaseAdapter {
         return i;
     }
 
+    public void refresh(List<MovieEntry> moviesList){
+        this.moviesList = moviesList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
@@ -53,16 +58,13 @@ public class CustomAdapter extends BaseAdapter {
         } else {
             listViewHolder = (ViewHolder) view.getTag();
         }
-
         String imagePath = moviesList.get(i).getPosterPath();
-
         Picasso.get()
                 .load(Utils.getImageUrl(imagePath))
                 .error(R.drawable.ic_baseline_error_24px)
                 .into(listViewHolder.imageView);
 
         listViewHolder.imageView.setAdjustViewBounds(true);
-
         return view;
     }
 

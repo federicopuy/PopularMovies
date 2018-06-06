@@ -76,21 +76,14 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
         setupUI();
 
         if (!NetworkUtils.isNetworkConnected(DetailActivity.this)){
-
             Toast.makeText(DetailActivity.this, R.string.check_internet, Toast.LENGTH_LONG).show();
-
         } else{
-
             getMovieInfo(movieEntry);
-
         }
 
         mDb = AppDatabase.getInstance(getApplicationContext());
-
         DetailViewModelFactory factory = new DetailViewModelFactory(mDb, movieEntry.getIdMovieDb());
-
         final DetailViewModel viewModel = ViewModelProviders.of(this, factory).get(DetailViewModel.class);
-
         viewModel.getMovieEntry().observe(this, new Observer<MovieEntry>() {
             @Override
             public void onChanged(@Nullable MovieEntry movieEntryOnChanged) {
@@ -101,11 +94,8 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
                     fabFavorite.setImageResource(R.drawable.ic_baseline_star_24px_golden);
                     //used FLAG to know if the movie has already been marked as favorite
                     FLAG_IS_FAVORITE = true;
-
                 } else {
-
                     FLAG_IS_FAVORITE = false;
-
                 }
             }
         });
@@ -120,35 +110,23 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
         // them through contentView using the library.
 
         View contentView = findViewById(R.id.content_view);
-
         TextView tvPlotSynopsis = contentView.findViewById(R.id.tvPlotSynopsis);
-
         TextView tvReleaseDate = contentView.findViewById(R.id.tvReleaseDate);
-
         TextView tvVoteAverage = contentView.findViewById(R.id.tvVoteAverage);
-
         ImageView imagePoster = contentView.findViewById(R.id.imagePoster);
-
         progressBar = contentView.findViewById(R.id.progressBar);
 
         setupRecyclerViews();
 
         Intent intent = getIntent();
-
         if (intent.hasExtra(MainActivity.DETAIL_MOVIE_INTENT)) {
 
             String movieJson = intent.getStringExtra(MainActivity.DETAIL_MOVIE_INTENT);
-
             Gson movieGson = new Gson();
-
             movieEntry = movieGson.fromJson(movieJson, com.example.federico.popularmovies.model.MovieEntry.class);
-
             String imagePath = movieEntry.getPosterPath();
-
             String imageURL = NetworkUtils.IMAGES_URL + NetworkUtils.IMAGES_SIZE + imagePath;
-
             Context context = DetailActivity.this;
-
             int width = context.getResources().getDisplayMetrics().widthPixels;
 
             Picasso.get().load(imageURL)
@@ -158,11 +136,8 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
                     .into(imagePoster);
 
             Objects.requireNonNull(getSupportActionBar()).setTitle(movieEntry.getTitle());
-
             tvPlotSynopsis.setText(movieEntry.getOverview());
-
             tvReleaseDate.setText(movieEntry.getReleaseDate());
-
             tvVoteAverage.setText(String.valueOf(movieEntry.getVoteAverage()));
 
         }
@@ -173,19 +148,13 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
     private void setupRecyclerViews() {
 
         // video recycler view
-
         videosRecyclerView = findViewById(R.id.videos_recycler_view);
-
         RecyclerView.LayoutManager videoLayoutManager = new LinearLayoutManager(this);
-
         videosRecyclerView.setLayoutManager(videoLayoutManager);
 
-        // video recycler view
-
+        // reviews recycler view
         reviewsRecyclerView = findViewById(R.id.reviews_recycler_view);
-
         RecyclerView.LayoutManager reviewLayoutManager = new LinearLayoutManager(this);
-
         reviewsRecyclerView.setLayoutManager(reviewLayoutManager);
 
     }
@@ -204,30 +173,21 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
         }
 
         mService = RetrofitClient.getClient(getApplicationContext()).create(APIInterface.class);
-
         Call<Movies<Video>> callGetMovieVideos = mService.getVideos(NetworkUtils.OBJECT, movieId, NetworkUtils.VIDEOS, BuildConfig.MY_MOVIE_DB_API_KEY);
-
         callGetMovieVideos.enqueue(new Callback<Movies<Video>>() {
             @Override
             public void onResponse(Call<Movies<Video>> call, Response<Movies<Video>> response) {
 
                 progressBar.setVisibility(View.VISIBLE);
-
                 if (response.isSuccessful()) {
-
                     try {
 
                         Movies<Video> movies = response.body();
-
                         assert movies != null;
                         List<Video> videoList = movies.getResults();
-
                         videosAdapter = new VideosAdapter(videoList, DetailActivity.this, DetailActivity.this);
-
                         videosRecyclerView.setAdapter(videosAdapter);
-
                         videosRecyclerView.addItemDecoration(new DividerItemDecoration(videosRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
-
                         getReviews(String.valueOf(movieEntry.getIdMovieDb()));
 
                     } catch (Exception e) {
@@ -245,20 +205,15 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
                         e.printStackTrace();
                     }
                     Toast.makeText(DetailActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-
                 }
 
             }
 
             @Override
             public void onFailure(Call<Movies<Video>> call, Throwable t) {
-
                 progressBar.setVisibility(View.INVISIBLE);
-
                 Toast.makeText(DetailActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-
                 Log.e(TAG, t.getMessage());
-
             }
         });
 
@@ -268,9 +223,7 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
 
     @Override
     public void onListItemClick(int clickedItemIndex, Video videoClicked) {
-
         NetworkUtils.watchYoutubeVideo(DetailActivity.this, videoClicked.getKey());
-
     }
 
     /*-------------------------------------- getReviews --------------------------------------------***/
@@ -278,26 +231,18 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
     private void getReviews(String movieId) {
 
         Call<Movies<Review>> callGetReviews = mService.getReviews(NetworkUtils.OBJECT, movieId, NetworkUtils.REVIEWS, BuildConfig.MY_MOVIE_DB_API_KEY);
-
         callGetReviews.enqueue(new Callback<Movies<Review>>() {
             @Override
             public void onResponse(Call<Movies<Review>> call, Response<Movies<Review>> response) {
-
                 progressBar.setVisibility(View.INVISIBLE);
-
                 if (response.isSuccessful()) {
-
                     try {
 
                         Movies<Review> movies = response.body();
-
                         assert movies != null;
                         List<Review> reviewList = movies.getResults();
-
                         reviewsAdapter = new ReviewsAdapter(reviewList, DetailActivity.this);
-
                         reviewsRecyclerView.setAdapter(reviewsAdapter);
-
                         reviewsRecyclerView.addItemDecoration(new DividerItemDecoration(reviewsRecyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
                     } catch (Exception e) {
@@ -305,25 +250,20 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
                     }
 
                 } else {
-
                     try {
                         Log.i(TAG, Objects.requireNonNull(response.errorBody()).string());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                     Toast.makeText(DetailActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-
                 }
 
             }
 
             @Override
             public void onFailure(Call<Movies<Review>> call, Throwable t) {
-
                 progressBar.setVisibility(View.INVISIBLE);
-
                 Toast.makeText(DetailActivity.this, R.string.error, Toast.LENGTH_LONG).show();
-
             }
         });
 
@@ -333,20 +273,16 @@ public class DetailActivity extends AppCompatActivity implements VideosAdapter.L
 
     @OnClick(R.id.fabFavorite)
     void addMovieToDb() {
-
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
 
                 if (FLAG_IS_FAVORITE) {
-
                     mDb.movieDAO().deleteMovie(movieEntry);
                     fabFavorite.setImageResource(R.drawable.ic_baseline_star_24px);
 
                 } else {
-
                     mDb.movieDAO().insertMovie(movieEntry);
-
                 }
 
             }

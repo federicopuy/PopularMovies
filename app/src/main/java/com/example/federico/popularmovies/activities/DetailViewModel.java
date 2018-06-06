@@ -11,9 +11,7 @@ public class DetailViewModel extends ViewModel {
     private LiveData<MovieEntry> movieEntry;
 
     public DetailViewModel(AppDatabase database, int movieId) {
-
         movieEntry = database.movieDAO().loadMovieById(movieId);
-
     }
 
     public LiveData<MovieEntry>getMovieEntry(){
